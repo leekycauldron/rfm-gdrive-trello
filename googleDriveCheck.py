@@ -49,7 +49,7 @@ def main():
 
                 #right now this just prints the file to stdout, so this is where it should call trello api
                 print(f"New file detected: {file_name} (ID: {file_id}, created at {created_time})")
-
+                #TODO: Call trelloCreate() here.
             # Wait for 10 seconds between checks
             time.sleep(10)
 
