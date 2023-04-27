@@ -9,6 +9,7 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from trelloCreate import createCard
 
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 
@@ -49,7 +50,9 @@ def main():
 
                 #right now this just prints the file to stdout, so this is where it should call trello api
                 print(f"New file detected: {file_name} (ID: {file_id}, created at {created_time})")
-                #TODO: Call trelloCreate() here.
+                # This is where the trello api call should go
+                url = f"https://drive.google.com/file/d/{file_id}/view?usp=share_link"
+                createCard(url,"Sean Huang")
             # Wait for 10 seconds between checks
             time.sleep(10)
 

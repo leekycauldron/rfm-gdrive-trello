@@ -57,6 +57,3 @@ def createCard(link=None,name=None):
 
         print(response.status_code)
 
-
-if __name__ == "__main__":
-    createCard(name="Bryson Lee-Kwen",link="https://drive.google.com/file/d/1hV9qeSQoNihwqJH7_AeMYbZMkB_l7XQd/view?usp=share_link")
