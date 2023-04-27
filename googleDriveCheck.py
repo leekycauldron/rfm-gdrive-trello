@@ -65,16 +65,12 @@ if __name__ == "__main__": main()
 
 
 #TODO:
-#remove the while loop and create two arrays, loops through it ()
+#remove the while loop and create two arrays (the arrays will contain name and folder id for each person), loops through it
 #time check to see if it was uploaded today
 # get folder id from everyone (get folder link from everyone)
 #associate folder id with name
 
 
 #example of files in "for file in results.get("files", []):"
-{'id': '1ZTuKrtJe13WBWfQ-0gABqZj68HbZ6VqZmHL9dnfbbUw', 'name': '6', 'createdTime': '2023-02-01T23:50:21.457Z'}
-{'id': '1Pf05VB1Oq--63d0O8NfEUn7x4g4awZzO', 'name': 'Sean Huang RPT outline.pdf', 'createdTime': '2023-04-26T18:24:32.891Z'}
-{'id': '1ZTuKrtJe13WBWfQ-0gABqZj68HbZ6VqZmHL9dnfbbUw', 'name': '6', 'createdTime': '2023-02-01T23:50:21.457Z'}
-{'id': '1Pf05VB1Oq--63d0O8NfEUn7x4g4awZzO', 'name': 'Sean Huang RPT outline.pdf', 'createdTime': '2023-04-26T18:24:32.891Z'}
 {'id': '1ZTuKrtJe13WBWfQ-0gABqZj68HbZ6VqZmHL9dnfbbUw', 'name': '6', 'createdTime': '2023-02-01T23:50:21.457Z'}
 {'id': '1Pf05VB1Oq--63d0O8NfEUn7x4g4awZzO', 'name': 'Sean Huang RPT outline.pdf', 'createdTime': '2023-04-26T18:24:32.891Z'}
