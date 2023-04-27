@@ -9,7 +9,7 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from trelloCreate import createCard
+import trelloCreate
 
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 
@@ -30,7 +30,7 @@ def main():
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
 
-    folder_id = "1Jt8V7b-jpkwRqIX95dJZXr8OYECPJxcH" #this is the id of a test folder I created; will need to be replaced
+    folder_id = "1eFm2YnjMVWPYtUyEhbajBjC1-YloI2Vc" #this is the id of a test folder I created; will need to be replaced
 
     service = build("drive", "v3", credentials=creds)
 
@@ -49,10 +49,10 @@ def main():
                 file_id = file.get("id")
 
                 #right now this just prints the file to stdout, so this is where it should call trello api
-                print(f"New file detected: {file_name} (ID: {file_id}, created at {created_time})")
-                # This is where the trello api call should go
-                url = f"https://drive.google.com/file/d/{file_id}/view?usp=share_link"
-                createCard(url,"Sean Huang")
+                trelloCreate.createCard("https://drive.google.com/file/d/"+file_id, file_name)
+                print(file)
+                print(f"New file found: {file_name} (ID: {file_id}, created at {created_time})")
+
             # Wait for 10 seconds between checks
             time.sleep(10)
 
@@ -61,3 +61,20 @@ def main():
             break
 
 if __name__ == "__main__": main()
+
+
+
+#TODO:
+#remove the while loop and create two arrays, loops through it ()
+#time check to see if it was uploaded today
+# get folder id from everyone (get folder link from everyone)
+#associate folder id with name
+
+
+#example of files in "for file in results.get("files", []):"
+{'id': '1ZTuKrtJe13WBWfQ-0gABqZj68HbZ6VqZmHL9dnfbbUw', 'name': '6', 'createdTime': '2023-02-01T23:50:21.457Z'}
+{'id': '1Pf05VB1Oq--63d0O8NfEUn7x4g4awZzO', 'name': 'Sean Huang RPT outline.pdf', 'createdTime': '2023-04-26T18:24:32.891Z'}
+{'id': '1ZTuKrtJe13WBWfQ-0gABqZj68HbZ6VqZmHL9dnfbbUw', 'name': '6', 'createdTime': '2023-02-01T23:50:21.457Z'}
+{'id': '1Pf05VB1Oq--63d0O8NfEUn7x4g4awZzO', 'name': 'Sean Huang RPT outline.pdf', 'createdTime': '2023-04-26T18:24:32.891Z'}
+{'id': '1ZTuKrtJe13WBWfQ-0gABqZj68HbZ6VqZmHL9dnfbbUw', 'name': '6', 'createdTime': '2023-02-01T23:50:21.457Z'}
+{'id': '1Pf05VB1Oq--63d0O8NfEUn7x4g4awZzO', 'name': 'Sean Huang RPT outline.pdf', 'createdTime': '2023-04-26T18:24:32.891Z'}
