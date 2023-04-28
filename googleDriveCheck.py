@@ -56,7 +56,7 @@ def main():
 
                 #if the file was created today, print it
                 if datetime.strptime(created_time, '%Y-%m-%dT%H:%M:%S.%fZ').date() == datetime.today().date():
-                    trelloCreate.createCard("https://drive.google.com/file/d/"+folders[1][i], folders[0][i])
+                    trelloCreate.createCard("https://drive.google.com/file/d/"+file_id, folders[0][i])
                     print(f"New file found: {file_name} (ID: {file_id}, created at {created_time})")
                 else:
                     print(f"File found: {file_name} (ID: {file_id}, created at {created_time})")
