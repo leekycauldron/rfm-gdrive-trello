@@ -10,8 +10,14 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import trelloCreate
+from datetime import datetime
 
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+# the first array is the names of the people, the second array is the folder id for each person
+folders = [
+        ["Bryson", "Daniel", "David", "Nelson", "Rachel", "Ronny", "Sean", "Shalott", "Ted"],
+        ["1eFm2YnjMVWPYtUyEhbajBjC1-YloI2Vc"]
+        ]
 
 def main():
     #this is authorization stuff copied from the google drive quickstart
@@ -29,15 +35,15 @@ def main():
         # Save the credentials for the next run
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
+    
 
-    folder_id = "1eFm2YnjMVWPYtUyEhbajBjC1-YloI2Vc" #this is the id of a test folder I created; will need to be replaced
 
     service = build("drive", "v3", credentials=creds)
 
-    # the query to search for items in the folder
-    query = f"'{folder_id}' in parents"
-
-    while True:
+    
+    for i in range(len(folders[0])):
+        # the query to search for items in the folder
+        query = f"'{folders[1][i]}' in parents"
         try:
             # Search for items in the folder
             results = service.files().list(q=query, fields="nextPageToken, files(id, name, createdTime)").execute()
@@ -48,10 +54,13 @@ def main():
                 file_name = file.get("name")
                 file_id = file.get("id")
 
-                #right now this just prints the file to stdout, so this is where it should call trello api
-                trelloCreate.createCard("https://drive.google.com/file/d/"+file_id, file_name)
-                print(file)
-                print(f"New file found: {file_name} (ID: {file_id}, created at {created_time})")
+                #if the file was created today, print it
+                if datetime.strptime(created_time, '%Y-%m-%dT%H:%M:%S.%fZ').date() == datetime.today().date():
+                    trelloCreate.createCard("https://drive.google.com/file/d/"+folders[1][i], folders[0][i])
+                    print(f"New file found: {file_name} (ID: {file_id}, created at {created_time})")
+                else:
+                    print(f"File found: {file_name} (ID: {file_id}, created at {created_time})")
+                
 
             # Wait for 10 seconds between checks
             time.sleep(10)
@@ -59,14 +68,15 @@ def main():
         except HttpError as error:
             print(f"An error occurred: {error}")
             break
+    print("Done")
 
 if __name__ == "__main__": main()
 
 
 
 #TODO:
-#remove the while loop and create two arrays (the arrays will contain name and folder id for each person), loops through it
-#time check to see if it was uploaded today
+# *DONE*  ----- remove the while loop and create two arrays (the arrays will contain name and folder id for each person), loops through it
+# *DONE*  ----- time check to see if it was uploaded today
 # get folder id from everyone (get folder link from everyone)
 #associate folder id with name
 
