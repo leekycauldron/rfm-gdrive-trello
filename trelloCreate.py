@@ -3,7 +3,7 @@ import datetime
 from creds import *
 
 
-def createCard(link=None,name=None):
+def createCard(link=None,name=None,fileName=None):
     url = "https://api.trello.com/1/cards"
     now = datetime.datetime.now()
     date = now.strftime("%Y-%m-%d")
@@ -11,13 +11,11 @@ def createCard(link=None,name=None):
         "key":KEY,
         "token":TOKEN,
         "idList":"64492238696b4da266e1c10e",
-        "name":"New Video",
+        "name":"Reflection Video: "+fileName,
         "desc":f"""
         
     Link: {link}
-
     Date Uploaded: {date}
-
     Name: {name}""",
     }
 
@@ -56,4 +54,3 @@ def createCard(link=None,name=None):
         response = requests.request("POST",url,params=body)
 
         print(response.status_code)
-
