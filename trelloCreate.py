@@ -11,7 +11,7 @@ def createCard(link=None,name=None,fileName=None):
         "key":KEY,
         "token":TOKEN,
         "idList":"64492238696b4da266e1c10e",
-        "name":"Reflection Video: "+fileName,
+        "name":"Reflection Video: "+("No file name" if not fileName else fileName),
         "desc":f"""
         
     Link: {link}
