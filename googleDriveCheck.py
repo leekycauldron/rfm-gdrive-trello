@@ -15,8 +15,8 @@ from datetime import datetime
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 # the first array is the names of the people, the second array is the folder id for each person
 folders = [
-        ["Bryson", "Daniel", "David", "Nelson", "Rachel", "Ronny", "Sean", "Shalott", "Ted"],
-        ["1eFm2YnjMVWPYtUyEhbajBjC1-YloI2Vc"]
+        ["Andrew","Bryson", "Daniel", "David", "Nelson", "Rachel", "Ronny", "Sean", "Shalott", "Tamir","Ted"],
+        ["1zwyjtLaUkWRacN-gdxElDo05_51uFW39","1eFm2YnjMVWPYtUyEhbajBjC1-YloI2Vc","","1guIi7sZOaUMNRCvnB5bAmDqnxCQCPg7z","1PF4bmd1qW0pbKUIaAIXr58DvS27neLb7","","1C5XOYEKgUu0x_3CX5QpOMKIsQySUJuaI","","1ICoP3zL_mIkfmmr_2V0NoywsMgPOeItA","",""]
         ]
 
 def main():
@@ -69,6 +69,7 @@ def main():
             print(f"An error occurred: {error}")
             break
     print("Done")
+    return "OK"
 
 if __name__ == "__main__": main()
 
